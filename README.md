@@ -126,9 +126,30 @@ that actually needs one. That is a feature, not a limitation to route around.
 
 ---
 
+## Contributing and releases
+
+`main` is protected. Every change goes through a pull request:
+
+1. Branch from `main`, make the change under `doula/`, open a PR.
+2. CI (`.github/workflows/skill.yml`) validates on every PR: exactly 9 reference
+   files present, frontmatter is exactly `name: doula` plus `description`, no em
+   dash anywhere, and the archive builds.
+3. The repository owner ([`.github/CODEOWNERS`](.github/CODEOWNERS)) reviews and
+   merges. Only the owner has merge rights.
+4. The source branch is deleted automatically on merge.
+
+When a PR that touches `doula/` lands on `main`, CI builds a fresh `doula.skill`,
+bumps the patch number from the latest `vX.Y.Z` tag, and publishes a new GitHub
+Release with the archive attached. For a minor or major bump, run the **Skill**
+workflow by hand from the Actions tab and pick the bump level.
+
+The packaged `doula.skill` is never committed (see `.gitignore`). Download it
+from the [Releases](https://github.com/sayeemabdullah/doula/releases) page.
+
 ## Editing and repackaging
 
-Edit the files in `doula/`, then rebuild the archive from this directory:
+To test a build locally, edit the files in `doula/` and rebuild the archive from
+this directory (CI does the same on merge):
 
 ```sh
 rm -f doula.skill

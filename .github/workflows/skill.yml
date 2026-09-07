@@ -1,0 +1,114 @@
+name: Skill
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+    paths:
+      - 'doula/**'
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Version part to bump for the release
+        type: choice
+        options: [patch, minor, major]
+        default: patch
+
+concurrency:
+  group: skill-release
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check structure and frontmatter
+        run: |
+          set -euo pipefail
+
+          test -f doula/SKILL.md || { echo "::error::doula/SKILL.md missing"; exit 1; }
+
+          refs=$(find doula/references -maxdepth 1 -type f -name '*.md' | wc -l | tr -d ' ')
+          [ "$refs" -eq 9 ] || { echo "::error::expected 9 files in doula/references, found $refs"; exit 1; }
+
+          for f in pregnancy newborn infant toddler emotional-support red-flags profile journal followups; do
+            test -f "doula/references/$f.md" || { echo "::error::missing doula/references/$f.md"; exit 1; }
+          done
+
+          fm=$(awk 'NR==1 && $0=="---"{f=1; next} f && $0=="---"{exit} f{print}' doula/SKILL.md)
+          printf 'frontmatter:\n%s\n' "$fm"
+          echo "$fm" | grep -qx 'name: doula' || { echo "::error::frontmatter name must be 'doula'"; exit 1; }
+          echo "$fm" | grep -q '^description: .' || { echo "::error::frontmatter description missing"; exit 1; }
+          keys=$(printf '%s\n' "$fm" | grep -c '^[a-z_]\+:' || true)
+          [ "$keys" -eq 2 ] || { echo "::error::frontmatter must have exactly 2 keys (name, description), found $keys"; exit 1; }
+
+      - name: Check for em dashes
+        run: |
+          set -euo pipefail
+          if LC_ALL=C grep -rlP '\xe2\x80\x94' doula/; then
+            echo "::error::em dash found in the files above, use periods, commas, or parentheses instead"
+            exit 1
+          fi
+          echo "no em dashes"
+
+      - name: Build doula.skill
+        run: |
+          set -euo pipefail
+          rm -f doula.skill
+          zip -r -X doula.skill doula -x '.*' '*/.*'
+          unzip -l doula.skill
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: doula-skill
+          path: doula.skill
+          if-no-files-found: error
+
+  release:
+    needs: validate
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine next version
+        id: v
+        run: |
+          set -euo pipefail
+          latest=$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -n1)
+          [ -n "$latest" ] || latest=v0.0.0
+          echo "latest tag: $latest"
+          IFS=. read -r major minor patch <<< "${latest#v}"
+          case "${{ github.event.inputs.bump || 'patch' }}" in
+            major) major=$((major + 1)); minor=0; patch=0 ;;
+            minor) minor=$((minor + 1)); patch=0 ;;
+            *)     patch=$((patch + 1)) ;;
+          esac
+          next="v${major}.${minor}.${patch}"
+          echo "next version: $next"
+          echo "next=$next" >> "$GITHUB_OUTPUT"
+
+      - name: Build doula.skill
+        run: |
+          set -euo pipefail
+          rm -f doula.skill
+          zip -r -X doula.skill doula -x '.*' '*/.*'
+
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release create "${{ steps.v.outputs.next }}" doula.skill \
+            --target "${{ github.sha }}" \
+            --title "Doula ${{ steps.v.outputs.next }}" \
+            --generate-notes
