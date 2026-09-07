@@ -1,2 +1,4 @@
-# Packaged skill archive is a build artifact, rebuild from doula/ or download from Releases
-*.skill
+# doula.skill IS tracked in this repo (and also attached to every release).
+# Rebuild and commit it whenever doula/ changes:
+#   rm -f doula.skill && zip -r -X doula.skill doula -x '.*' '*/.*'
+.DS_Store

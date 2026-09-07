@@ -56,11 +56,20 @@ jobs:
           fi
           echo "no em dashes"
 
-      - name: Build doula.skill
+      - name: Verify committed doula.skill matches doula/
         run: |
           set -euo pipefail
-          rm -f doula.skill
-          zip -r -X doula.skill doula -x '.*' '*/.*'
+          test -f doula.skill || {
+            echo "::error::doula.skill is missing from the repo. Build it: rm -f doula.skill && zip -r -X doula.skill doula -x '.*' '*/.*'"
+            exit 1
+          }
+          tmp=$(mktemp -d)
+          unzip -q doula.skill -d "$tmp"
+          if ! diff -r "$tmp/doula" doula; then
+            echo "::error::committed doula.skill is out of sync with doula/. Rebuild and commit it: rm -f doula.skill && zip -r -X doula.skill doula -x '.*' '*/.*'"
+            exit 1
+          fi
+          echo "doula.skill matches doula/"
           unzip -l doula.skill
 
       - uses: actions/upload-artifact@v4
@@ -97,17 +106,12 @@ jobs:
           echo "next version: $next"
           echo "next=$next" >> "$GITHUB_OUTPUT"
 
-      - name: Build doula.skill
-        run: |
-          set -euo pipefail
-          rm -f doula.skill
-          zip -r -X doula.skill doula -x '.*' '*/.*'
-
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
+          test -f doula.skill || { echo "::error::doula.skill missing"; exit 1; }
           gh release create "${{ steps.v.outputs.next }}" doula.skill \
             --target "${{ github.sha }}" \
             --title "Doula ${{ steps.v.outputs.next }}" \
