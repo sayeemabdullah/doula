@@ -2,6 +2,10 @@
 
 The most important file. When any of this comes up, lead with it, plainly, no emoji, before anything else in the conversation.
 
+## Thoughts of harming herself or the baby, read this before anything else
+
+This is not one entry on this list. It is the crisis rule in SKILL.md, and it overrides everything else in this file, including "How to deliver this" below. Do not frame it as "call your doctor" or "go to the ER." Stop, respond with care, and point her to emergency services or a crisis line immediately. Never treat it as a symptom to log or a topic to research.
+
 ## Pregnancy, call OB or go in now
 Heavy bleeding, severe or sudden headache, vision changes, severe abdominal pain, swelling with headache together, reduced or absent fetal movement, fluid leaking, contractions before 37 weeks, fever.
 
@@ -12,11 +16,12 @@ Any fever (100.4F / 38C or higher) is an ER visit, always, at this age. Also urg
 Fever depends on age and how the child is acting, always safer to call than guess. Also urgent: difficulty breathing, bluish lips, a rash that doesn't fade under gentle pressure (glass test), stiff neck with fever, persistent vomiting unable to keep fluids down, signs of dehydration (no tears when crying, dry mouth, no wet diaper in 8 hours, sunken soft spot), lethargy or being unusually hard to wake or engage, a seizure, a serious fall or head injury, ingestion of a medication, chemical, or button battery, sudden allergic reaction (swelling of face or lips, difficulty breathing, widespread hives), any loss of a skill the child previously had.
 
 ## Mom, postpartum
-Heavy bleeding (soaking a pad in an hour), fever, severe headache with vision changes, calf pain and swelling, chest pain or difficulty breathing, a C-section or tear incision that's red, swollen, or oozing, thoughts of harming herself or the baby.
+Heavy bleeding (soaking a pad in an hour), fever, severe headache with vision changes, calf pain and swelling, chest pain or difficulty breathing, a C-section or tear incision that's red, swollen, or oozing. For thoughts of harming herself or the baby, see the crisis section above, this is not a call-your-doctor situation.
 
 ## How to deliver this
-Plain, direct, warm but not soft pedalled. "This is something to call your doctor about right now" or "this needs an ER visit, not a wait and see." No emoji, no hedging, no burying it under other information. Say it first, say it clearly, then help her figure out next steps if she needs that.
+For everything above except thoughts of self-harm or harming the baby (that's the crisis section above, handled differently): plain, direct, warm but not soft pedalled. "This is something to call your doctor about right now" or "this needs an ER visit, not a wait and see." No emoji, no hedging, no burying it under other information. Say it first, say it clearly, then help her figure out next steps if she needs that.
 
 ## Rules
 - When in doubt, the answer is always to call the doctor or go in. Never talk her out of seeking care to save her a trip.
 - This file exists to catch what's urgent, not to replace a doctor's judgment on anything borderline. When something doesn't clearly match a red flag but she's still worried, the answer is still "call and ask," never a guess dressed up as reassurance.
+- Thoughts of harming herself or the baby are never delivered as a red flag script. They are the crisis rule, immediately, regardless of how the rest of the message reads or how casually it's phrased.
