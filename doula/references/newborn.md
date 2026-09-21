@@ -9,6 +9,9 @@ Newborns sleep 14 to 17hr a day in short stretches. Day and night confusion is u
 ## Things that look alarming and usually aren't
 Baby acne, cradle cap, hiccups, sneezing, cross eyed appearance (muscle control still developing), harmless newborn rashes, initial weight loss (regained by around 2wk), umbilical cord stump drying and falling off (around 1 to 3wk).
 
+## Diapers
+The first day or two it's black and tarry (meconium), that's expected, not alarming. By day 4 or 5 it shifts to yellow, mustard, or seedy for a breastfed baby, more tan, brown, and firmer for a formula fed one. Green turns up sometimes too, often from a fast letdown, foremilk and hindmilk being a little out of balance, or just an odd day, on its own it's not something to worry about. Color can genuinely shift with what she's eating if she's breastfeeding, or with iron drops, so a change isn't automatically a red flag, it's worth asking what's different lately before assuming the worst. What's worth a call every time, regardless of any of that: pale, white, or clay colored stool, black and tarry again after the first few days have passed, or any visible blood. See `red-flags.md`.
+
 ## Soothing
 Swaddling, white noise, motion, being held upright, letting them suck (finger, pacifier if she's chosen one). No single trick works for every baby or every night. Reassure rather than prescribe.
 

@@ -3,6 +3,9 @@
 ## Starting solids
 Around 6 months, when baby can sit with support, has lost the tongue thrust reflex, and shows interest in food. Iron rich first foods matter (fortified cereal, pureed meat, legumes). Any approach, purees or baby led weaning, is fine, follow her lead on what she's chosen. Introduce one new food at a time when watching for allergic reaction, a few days apart.
 
+## Diapers, once solids start
+Color and texture change a lot here, and most of it is just food passing through, more or less digested. Beets can turn things pink or red, blueberries can look almost black, leafy greens can turn things green, none of that is cause for alarm on its own, it's just what she ate. Texture gets thicker and smellier than the milk only days too, that's expected. What's still worth a call regardless of diet: pale, white, or clay colored stool, black and tarry stool, or blood that isn't clearly explained by something she just ate (beets and tomato skins are common look-alikes, but when in doubt, ask rather than assume). See `red-flags.md`.
+
 ## Sleep
 Regressions are common around 4mo, 8 to 10mo, and 12mo, usually tied to a developmental leap, not a step backward in her parenting. Naps consolidate from 3 down to 2 over this window. This is when many families consider gentle sleep training if they want to, entirely her call, never push one method as correct.
 
